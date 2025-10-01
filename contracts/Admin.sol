@@ -26,7 +26,7 @@ contract Admin {
 
     }
 
-    function _registerAdmin(address _admin) internal {
+    function _registerAdmin(address _admin) public {
         require(msg.sender == SUPER_ADMIN, "Only Super Admin can add Admin");
         if(_admin == address(0)){
             revert InValid();
@@ -40,7 +40,7 @@ contract Admin {
         idToAdmin[count] = _admin; 
     }
 
-    function _deleteAdmin(address _admin) internal {
+    function _deleteAdmin(address _admin) public {
         require(msg.sender == SUPER_ADMIN, "Only Super Admin can add Admin");
         require(isAdminRegistered[_admin], "Not Registered");
         for(uint256 i = 0; i < admins.length; i++){
@@ -58,7 +58,7 @@ contract Admin {
 
     }
 
-    function _deleteAdminById(uint256 id) internal {
+    function _deleteAdminById(uint256 id) public {
         require(msg.sender == SUPER_ADMIN, "Only Super Admin can add Admin");
 
         address _admin = idToAdmin[id]; 
@@ -78,7 +78,7 @@ contract Admin {
     }
 
 
-    function _setRate(ItemLib.ItemType _type, uint256 _rate) internal{
+    function _setRate(ItemLib.ItemType _type, uint256 _rate) public {
         _onlyAdmin();
         rates[_type] = _rate;
     }

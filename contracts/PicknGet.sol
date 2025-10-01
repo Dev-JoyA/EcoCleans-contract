@@ -59,7 +59,6 @@ contract PicknGet is User, Admin, Product {
     error InsufficientPayment();
     error NotConfirmed();
 
-    event UserRegistered(uint256 indexed id, address indexed userAddress, string homeAddress, string phoneNumber,string name);
     event ItemRecycled(address indexed user, uint256 itemId, string itemType, uint256 weight);
     event PaidForRecycledItem(address indexed user, uint256 indexed userId, uint256 itemId, ItemLib.ItemType itemType);
     event RiderApproved(uint256 indexed riderId, string _name, 
@@ -70,20 +69,6 @@ contract PicknGet is User, Admin, Product {
                               uint256 _capacity,
                               VehicleType _vehicleType);
 
-
-    function registerUser(string memory _homeAddress, string memory _number, string memory _name) public {
-        address _userAddress = msg.sender;
-
-        _registerUser( _homeAddress, _number, _name);
-
-        uint256 _id = userId[_userAddress];
-        
-        emit UserRegistered(_id, _userAddress, _homeAddress, _number, _name);
-    }
-
-    function registerAdmin(address _admin) public {
-        _registerAdmin(_admin);
-    }
 
     function registerProducer(string memory  _name, string memory _country, uint256 _number) public {
         registerProductOwner(msg.sender, _name, _country, _number);    
@@ -197,28 +182,12 @@ contract PicknGet is User, Admin, Product {
         uint256 amount = itemWeight * rate;
 
         emit PaidForRecycledItem(user, _userId, _recycledItemId, _rType);
-        // payable(user).transfer(amount * (10 ** DECIMALS));
         (bool success, ) = payable(user).call{value: amount * (10 ** DECIMALS)}("");
         require(success, "Transfer failed");
         totalEarned[_userId] += amount;
         hasUserReceivedPayment[_userId][_recycledItemId] = true;   
     }
 
-    function deleteUserAccount(address _user) public {
-        _deleteUser(_user);
-    }
-
-    function deleteAdmin(address _admin) public {
-        _deleteAdmin(_admin);
-    }
-
-    function deleteAdminById(uint256 _adminId) public {
-        _deleteAdminById(_adminId);
-    }
-
-    function setRate(ItemLib.ItemType _type, uint256 _rate) public {
-        _setRate(_type, _rate);
-    }
  
     function fundContract() external payable {
         require(msg.value > 0, "Must send some U2U");
