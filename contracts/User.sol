@@ -22,8 +22,10 @@ contract User{
     
     error NotFound();
     error UserNotRegistered();
+
+    event UserRegistered(uint256 indexed id, address indexed userAddress, string homeAddress, string phoneNumber,string name);
    
-    function _registerUser(string memory _homeAddress, string memory _number, string memory _name) internal {
+    function _registerUser(string memory _homeAddress, string memory _number, string memory _name) public {
         if(msg.sender == address(0)){
             revert NotFound();
         }
@@ -42,6 +44,8 @@ contract User{
         userId[msg.sender] = count;
         
         users.push(msg.sender);    
+        
+        emit UserRegistered(count, msg.sender, _homeAddress, _number, _name);
     }
 
     function _isRegistered(uint256 _id) internal view returns(bool){
@@ -57,7 +61,7 @@ contract User{
     }
 
 
-   function _deleteUser(address _user) internal {
+   function _deleteUser(address _user) public {
     if(_isRegistered(_user) == false){
         revert NotFound();
     }
