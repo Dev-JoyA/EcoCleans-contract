@@ -23,6 +23,28 @@ The main contract is implemented in **`EcoCleans.sol`** and inherits functionali
 
 ---
 
+## Installation
+To install the project 
+- Go to your terminal
+- cd into a folder {Desktop folder}
+- run 
+```shell
+  git clone https://github.com/ecoCleans/ecoCleans-contract.git
+```
+- open the folder on Vscode 
+- go to your terminal
+- run
+```shell
+  npm install
+```
+**check Hardhat.config.cjs for all necessary keys you need to set**
+- set all your necessary keys in your terminal using vars e.g 
+
+```shell
+  npx hardhat vars set ETHERSCAN_API_KEY
+```
+
+
 ## ⚙️ Compilation
 
 To compile the contracts, run:
