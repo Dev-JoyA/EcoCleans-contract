@@ -1,13 +1,13 @@
-# 🪙 PicknGet Smart Contract
+# 🪙 EcoCleans Smart Contract
 
-The **PicknGet** contract is a **decentralized application (dApp)** that allows users to **recycle items in exchange for U2U coins**.  
+The **EcoCleans** contract is a **decentralized application (dApp)** that allows users to **recycle items in exchange for U2U coins**.  
 It also includes an **e-commerce component**, where recycled materials can be transformed into various **eco-green products**.
 
 ---
 
 ## 🧱 Contract Structure
 
-The main contract is implemented in **`PicknGet.sol`** and inherits functionality from the following Solidity files:
+The main contract is implemented in **`EcoCleans.sol`** and inherits functionality from the following Solidity files:
 
 - **`User.sol`** – Handles user registration and management.
 - **`Admin.sol`** – Manages administrative privileges and operations.
@@ -43,15 +43,15 @@ The **`hardhat.config.js`** (or **`hardhat.config.ts`**) file contains key proje
 
 The contract is deployed using **Hardhat Ignition** on the **U2U Nebulas Test Network**.
 
-Run the following command to deploy:
+Run the following command to deploy and verify:
 
 ```shell
-npx hardhat ignition deploy ./ignition/modules/PicknGet.cjs  --network nebulas --deployment-id u2u-deployment
+npx hardhat ignition deploy ./ignition/modules/EcoCleans.cjs  --network nebulas --deployment-id u2u-deployment --verify 
 ```
 
 **Details:**
 
-- **Deployment Tool:** Hardhat Ignition  
+- **Deployment Tool:** `Hardhat Ignition`  
 - **Network Name:** `nebulas`  
 - **Deployment ID:** `u2u-deployment`  
 
@@ -60,26 +60,21 @@ npx hardhat ignition deploy ./ignition/modules/PicknGet.cjs  --network nebulas -
 ```shell
 Deployed Addresses
 
-PicknGetModule#PicknGet - 0x2001f7f7112FB0e7DeC73586f494c6dEcB790636
+EcoCleansModule#EcoCleans - 0x7bee28BDEEe53edc01360635237a68eF3BDF4388
 ```
 
 ## ✅ Verification
 
-After deployment, verify the contract on **U2UScan** using:
-```shell
-npx hardhat verify u2u-deployment
-```
-
 
 ## verified Address
 ```shell
-   https://testnet.u2uscan.xyz/address/0x2001f7f7112FB0e7DeC73586f494c6dEcB790636#code
+  https://testnet.u2uscan.xyz/address/0x7bee28BDEEe53edc01360635237a68eF3BDF4388#code
   ```
 
 
 ## 📘 Summary
 
-- **Project Name:** PicknGet  
+- **Project Name:** EcoCleans  
 - **Purpose:** Recycling-to-earn and eco-commerce platform on the U2U blockchain.  
 - **Language:** Solidity  
 - **Deployment Network:** U2U Nebulas Testnet  
